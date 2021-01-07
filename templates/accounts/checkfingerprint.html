@@ -1,0 +1,27 @@
+{% extends 'core/base.html' %}
+{% load crispy_forms_tags %}
+{% block head_title %}Banking System{% endblock %}
+{% block content %}
+<h1 class="font-mono font-bold text-3xl pb-5 pt-10">Please Enter Your Fingerprint</h1>
+<hr>
+<div class="w-full mt-10">
+    <form action="" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="flex flex-wrap -mx-3 mb-6">
+            <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="{{ forms.password1.id_for_label }}">
+                    Upload Image
+                </label>
+                {{forms.media}}
+                {{forms|crispy}}
+            </div>
+        </div>
+        <div class="flex items-center justify-between">
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline text-center" type="submit">
+                Submit
+            </button>
+        </div>
+    </form>
+</div>
+
+{% endblock %}

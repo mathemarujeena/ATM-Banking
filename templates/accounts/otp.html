@@ -1,0 +1,17 @@
+{% extends 'core/base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}
+<p> OTP for reference: {{otp}} </p> 
+<form action="" method="POST" enctype="multipart/form-data">
+    <!-- <h2 class="mb-3 mt-5 font-weight-normal text-center">
+    Add Your News 
+    </h2> -->
+    {% csrf_token %}
+    {{forms|crispy}}
+    <button id="submit" name="submit" class="btn btn-primary"
+    type="submit">Submit</button>
+</form>
+For reference of whose account it is working on {{uSir}}
+Result: {{o}}
+
+{% endblock %}
