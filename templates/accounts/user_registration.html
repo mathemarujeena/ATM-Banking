@@ -1,4 +1,5 @@
 {% extends 'core/base.html' %}
+{% load crispy_forms_tags %}
 
 {% block head_title %}Banking System{% endblock %}
 
@@ -11,8 +12,8 @@
     </div>
     {% endfor %}
 {% endif %}
-{% if information_form.non_field_errors %}
-    {% for error in information_form.non_field_errors %}
+{% if forms.non_field_errors %}
+    {% for error in forms.non_field_errors %}
     <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mt-2" role="alert">
         <p class="font-bold">Error!</p>
         <p class="block sm:inline">{{ error }}</p>
@@ -31,7 +32,7 @@
 <h1 class="font-mono font-bold text-3xl text-center pb-5 pt-10">Register</h1>
 <hr />
 <div class="w-full mt-10">
-    <form method="post" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" enctype="multipart/form-data">
+    <form method="POST" action="" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" enctype="multipart/form-data">
         {% csrf_token %}
         {% for hidden_field in registration_form.hidden_fields %}
             {{ hidden_field.errors }}
@@ -74,12 +75,12 @@
                 {% endif %}
             </div>
             <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="{{ information_form.account_type.id_for_label }}">
-                    {{ information_form.account_type.label }}
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="{{ forms.account_type.id_for_label }}">
+                    {{ forms.account_type.label }}
                 </label>
-                {{ information_form.account_type }}
-                {% if information_form.account_type.errors %}
-                    {% for error in information_form.account_type.errors %}
+                {{ forms.account_type }}
+                {% if forms.account_type.errors %}
+                    {% for error in forms.account_type.errors %}
                     <p class="text-red-600 text-sm italic pb-2">{{ error }}</p>
                     {% endfor %}
                 {% endif %}
@@ -87,23 +88,23 @@
         </div>
         <div class="flex flex-wrap -mx-3 mb-6">
             <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="{{ information_form.gender.id_for_label }}">
-                    {{ information_form.gender.label }}
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="{{ forms.gender.id_for_label }}">
+                    {{ forms.gender.label }}
                 </label>
-                {{ information_form.gender }}
-                {% if information_form.gender.errors %}
-                    {% for error in information_form.gender.errors %}
+                {{ forms.gender }}
+                {% if forms.gender.errors %}
+                    {% for error in forms.gender.errors %}
                         <p class="text-red-600 text-sm italic pb-2">{{ error }}</p>
                     {% endfor %}
                 {% endif %}
             </div>
             <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="{{ information_form.birth_date.id_for_label }}">
-                    {{ information_form.birth_date.label }}
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="{{ forms.birth_date.id_for_label }}">
+                    {{ forms.birth_date.label }}
                 </label>
-                {{ information_form.birth_date }}
-                {% if information_form.birth_date.errors %}
-                    {% for error in information_form.birth_date.errors %}
+                {{ forms.birth_date }}
+                {% if forms.birth_date.errors %}
+                    {% for error in forms.birth_date.errors %}
                     <p class="text-red-600 text-sm italic pb-2">{{ error }}</p>
                     {% endfor %}
                 {% endif %}
@@ -111,22 +112,22 @@
         </div>
         <div class="flex flex-wrap -mx-3 mb-6">
             <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="{{ information_form.gender.id_for_label }}">
-                    {{ information_form.phone_no.label }}
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="{{ forms.gender.id_for_label }}">
+                    {{ forms.phone_no.label }}
                 </label>
-                {{ information_form.phone_no }}
-                {% if information_form.phone_no.errors %}
-                    {% for error in information_form.phone_no.errors %}
+                {{ forms.phone_no }}
+                {% if forms.phone_no.errors %}
+                    {% for error in forms.phone_no.errors %}
                         <p class="text-red-600 text-sm italic pb-2">{{ error }}</p>
                     {% endfor %}
                 {% endif %}
             </div>
             <div class="w-full md:w-1/2 px-3 mb-6 md:mb-0">
-                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="{{ information_form.gender.id_for_label }}">
-                    {{ information_form.fingerprint_images.label }}
+                <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="{{ forms.fingerprint_images.id_for_label }}">
+                    {{ forms.fingerprint_images.label }}
                 </label>
-                <img {% if information_form.fingerprint_images %} src="{{ information_form.fingerprint_images.url }}" {% else %} alt="You have no image." {% endif %}>
-                <input type="file" name="image" accept="image/*">
+                <!-- <img {% if forms.fingerprint_images %} src="{{ forms.fingerprint_images.url }}" {% else %} alt="You have no image." {% endif %}> -->
+                <input id="input_image" class="clearablefileinput" type="file" name="image" accept="image/*">
             </div>
         </div>
 

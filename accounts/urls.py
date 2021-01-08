@@ -23,12 +23,16 @@ urlpatterns = [
         name="user_logout"
     ),
     path(
-        "register/", UserRegistrationView,
+        "register/", UserRegistrationView1,
         name="user_registration"
     ),
     path(
         "checkfingerprint/", checkFingerprintupload,
         name="checkfingerprint"
+    ),
+    path(
+        "checkregistraion/", InformationRegister,
+        name="checkregistration"
     ),
     # path(
     #     "checker/", checkFingerprint,
